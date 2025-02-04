@@ -1,0 +1,130 @@
+## PYLINT
+# Instala la extension para VSCOde even-better-toml
+# Genera el fichero .toml con el comando "pylint --generate-rcfile > pyproject.toml"
+# https://pylint.readthedocs.io/en/v2.17.7/tutorial.html
+
+## Black
+# https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
+# Black is using the [tool.black] section. 
+# The option keys are the same as long names of options on the command line.
+# Chequear sin grabar:
+#   black --diff --color src/RPS_spock_lizard.py
+
+[tool.black]
+line-length = 79
+
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.vscode
+  | _build
+  | buck-out
+  | build
+  | dist
+  | venv
+  | coverage_annotation
+)/
+'''
+
+
+[tool.pylint.basic]
+# Naming style matching correct argument names.
+argument-naming-style = "snake_case"
+
+# Regular expression matching correct argument names. Overrides argument-naming-
+# style. If left empty, argument names will be checked with the set naming style.
+# argument-rgx =
+
+# Naming style matching correct attribute names.
+attr-naming-style = "snake_case"
+
+# Regular expression matching correct attribute names. Overrides attr-naming-
+# style. If left empty, attribute names will be checked with the set naming
+# style.
+# attr-rgx =
+
+# Naming style matching correct class constant names.
+class-const-naming-style = "UPPER_CASE"
+
+# Regular expression matching correct class constant names. Overrides class-
+# const-naming-style. If left empty, class constant names will be checked with
+# the set naming style.
+# class-const-rgx =
+
+# Naming style matching correct class names.
+class-naming-style = "PascalCase"
+
+# Regular expression matching correct class names. Overrides class-naming-style.
+# If left empty, class names will be checked with the set naming style.
+# class-rgx =
+
+# Naming style matching correct constant names.
+const-naming-style = "UPPER_CASE"
+
+# Regular expression matching correct constant names. Overrides const-naming-
+# style. If left empty, constant names will be checked with the set naming style.
+# const-rgx =
+
+# Naming style matching correct function names.
+function-naming-style = "snake_case"
+
+# Regular expression matching correct function names. Overrides function-naming-
+# style. If left empty, function names will be checked with the set naming style.
+# function-rgx =
+
+# Good variable names which should always be accepted, separated by a comma.
+good-names = ["i", "j", "k", "ex", "Run", "_"]
+
+# Good variable names regexes, separated by a comma. If names match any regex,
+# they will always be accepted
+# good-names-rgxs =
+
+# Naming style matching correct method names.
+method-naming-style = "snake_case"
+
+# Regular expression matching correct method names. Overrides method-naming-
+# style. If left empty, method names will be checked with the set naming style.
+# method-rgx =
+
+# Naming style matching correct module names.
+module-naming-style = "snake_case"
+
+# Regular expression matching correct module names. Overrides module-naming-
+# style. If left empty, module names will be checked with the set naming style.
+# module-rgx =
+
+
+# Naming style matching correct variable names.
+variable-naming-style = "snake_case"
+
+# Regular expression matching correct variable names. Overrides variable-naming-
+# style. If left empty, variable names will be checked with the set naming style.
+# variable-rgx =
+
+
+[tool.pylint.format]
+# Maximum number of characters on a single line.
+max-line-length = 79
+
+
+[tool.pylint."messages control"]
+# Only show warnings with the listed confidence levels. Leave empty to show all.
+# Valid levels: HIGH, CONTROL_FLOW, INFERENCE, INFERENCE_FAILURE, UNDEFINED.
+confidence = ["HIGH", "CONTROL_FLOW", "INFERENCE", "INFERENCE_FAILURE", "UNDEFINED"]
+
+# Disable the message, report, category or checker with the given id(s). You can
+# either give multiple identifiers separated by comma (,) or put this option
+# multiple times (only on the command line, not in the configuration file where
+# it should appear only once). You can also use "--disable=all" to disable
+# everything first and then re-enable specific checks. For example, if you want
+# to run only the similarities checker, you can use "--disable=all
+# --enable=similarities". If you want to run only the classes checker, but have
+# no Warning level messages displayed, use "--disable=all --enable=classes
+# --disable=W".
+disable = ["missing-module-docstring", "missing-class-docstring", "missing-function-docstring"]
+
