@@ -15,7 +15,7 @@ def a_star_search(start_state, goal_state):
         current_node = frontier.get_best_node()
 
         if current_node.state == goal_state:
-            return frontier, reached, reconstruct_path(current_node)
+            return frontier, reached, solution(current_node)
 
         reached.add(current_node)
 
@@ -47,7 +47,7 @@ def manhattan_distance(state, goal_state):
     return abs(x1 - x2) + abs(y1 - y2)
 
 
-def reconstruct_path(node):
+def solution(node):
     path = []
     while node:
         path.append(node.state)
