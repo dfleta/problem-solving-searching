@@ -1,14 +1,14 @@
 from src.world import Map
 from src.node import Node
 from src.frontier import Frontier
-from src.explored import Explored
+from src.reached import Reached
 
 
 def a_star_search(start_state, goal_state):
     start_node = Node(start_state, g=0, h=heuristic(start_state, goal_state))
     frontier = Frontier()
     frontier.add(start_node)
-    explored = Explored()
+    explored = Reached()
 
     while not frontier.is_empty():
 

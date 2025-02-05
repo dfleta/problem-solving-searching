@@ -1,11 +1,11 @@
 import pytest
-from src.explored import Explored
+from src.reached import Reached
 from src.node import Node
 from src.world import Map
 
 @pytest.fixture(name="explored")
 def setup():
-    return Explored()
+    return Reached()
 
 def test_add_node(explored):
     nodeA = Node(state="A", parent=None, g=1, h=2)
