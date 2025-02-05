@@ -18,4 +18,4 @@ class Node:
         return hash(self.state)
 
     def __repr__(self):
-        return self.state
+        return f"{self.state}"
