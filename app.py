@@ -1,4 +1,4 @@
-from src.world import Map
+from src.world import World
 from src.node import Node
 from src.frontier import Frontier
 from src.reached import Reached
@@ -19,7 +19,7 @@ def a_star_search(start_state, goal_state):
 
         reached.add(current_node)
 
-        for successor, cost in world.successors(current_node.state):
+        for successor, cost in World.successors(current_node.state):
             g = current_node.g + cost
             # h = heuristic(successor, goal_state)
             h = manhattan_distance(successor, goal_state)
@@ -42,8 +42,8 @@ def heuristic(state, goal_state):
     return abs(ord(state[0]) - ord(goal_state[0]))
 
 def manhattan_distance(state, goal_state):
-    x1, y1 = world.find_position(state)
-    x2, y2 = world.find_position(goal_state)
+    x1, y1 = World.find_position(state)
+    x2, y2 = World.find_position(goal_state)
     return abs(x1 - x2) + abs(y1 - y2)
 
 
@@ -56,10 +56,9 @@ def reconstruct_path(node):
 
 
 if __name__ == "__main__":
-    world = Map()
-    start_state = "S"
-    goal_state = "F"
-    frontier, explored, solution = a_star_search(start_state, goal_state)
+    START_STATE = "S"
+    GOAL_STATE = "F"
+    frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
     print("Path found:", solution)
     print("Explored:",  list(node for node in explored.get_elements()))
     print("Frontier:",  list(frontier.get_elements()))

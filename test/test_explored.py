@@ -1,7 +1,6 @@
 import pytest
 from src.reached import Reached
 from src.node import Node
-from src.world import Map
 
 @pytest.fixture(name="explored")
 def setup():
