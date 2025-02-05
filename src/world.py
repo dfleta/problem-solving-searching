@@ -14,10 +14,10 @@ class Map:
         self.h_cost = 2
 
     def find_position(self, state):
-        for i in range(self.rows):
-            for j in range(self.cols):
-                if self.map[i][j] == state:
-                    return i, j
+        for x in range(self.rows):
+            for y in range(self.cols):
+                if self.map[x][y] == state:
+                    return x, y
         return None
 
     def successors(self, state):
@@ -29,24 +29,24 @@ class Map:
         if not pos:
             return []
 
-        row, column = pos
+        x, y = pos
         successors = []
 
-        if row > 0 and self.map[row - 1][column] != "-":
+        if x > 0 and self.map[x - 1][y] != "-":
             successors.append(
-                (self.map[row - 1][column], self.v_cost)
+                (self.map[x - 1][y], self.v_cost)
             )  # Move up cost 1
-        if row < self.rows - 1 and self.map[row + 1][column] != "-":
+        if x < self.rows - 1 and self.map[x + 1][y] != "-":
             successors.append(
-                (self.map[row + 1][column], self.v_cost)
+                (self.map[x + 1][y], self.v_cost)
             )  # Move down
-        if column > 0 and self.map[row][column - 1] != "-":
+        if y > 0 and self.map[x][y - 1] != "-":
             successors.append(
-                (self.map[row][column - 1], self.h_cost)
+                (self.map[x][y - 1], self.h_cost)
             )  # Move left cost 2
-        if column < self.cols - 1 and self.map[row][column + 1] != "-":
+        if y < self.cols - 1 and self.map[x][y + 1] != "-":
             successors.append(
-                (self.map[row][column + 1], self.h_cost)
+                (self.map[x][y + 1], self.h_cost)
             )  # Move right
 
         return successors

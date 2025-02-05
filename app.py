@@ -8,16 +8,16 @@ def a_star_search(start_state, goal_state):
     start_node = Node(start_state, g=0, h=heuristic(start_state, goal_state))
     frontier = Frontier()
     frontier.add(start_node)
-    explored = Reached()
+    reached = Reached()
 
     while not frontier.is_empty():
 
         current_node = frontier.get_best_node()
 
         if current_node.state == goal_state:
-            return frontier, explored, reconstruct_path(current_node)
+            return frontier, reached, reconstruct_path(current_node)
 
-        explored.add(current_node)
+        reached.add(current_node)
 
         for successor, cost in world.successors(current_node.state):
             g = current_node.g + cost
@@ -25,7 +25,7 @@ def a_star_search(start_state, goal_state):
             h = manhattan_distance(successor, goal_state)
             successor_node = Node(successor, parent=current_node, g=g, h=h)
 
-            if explored.contains(successor_node):
+            if reached.contains(successor_node):
                 continue
 
             if not frontier.contains(successor_node) or g < successor_node.g:
