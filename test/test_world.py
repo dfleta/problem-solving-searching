@@ -16,6 +16,38 @@ def test_find_position_edge_cases():
     assert World.find_position("X") == (5, 4)
 
 
+def test_move_up():
+    assert World.up(row=1, col=1) == ("A", World.V_COST)
+
+
+def test_move_up_not_permited():
+    assert not World.up(row=3, col=2)
+
+
+def test_move_down():
+    assert World.down(row=1, col=1) == ("I", World.V_COST)
+
+
+def test_move_down_not_permited():
+    assert not World.down(row=2, col=1)
+
+
+def test_move_left():
+    assert World.left(row=1, col=1) == ("Z", World.H_COST)
+
+
+def test_move_left_not_permited():
+    assert not World.left(row=3, col=2)
+
+
+def test_move_right():
+    assert World.right(row=1, col=1) == ("F", World.H_COST)
+
+
+def test_move_right_not_permited():
+    assert not World.right(row=2, col=1)
+
+
 def test_successors_existing_state():
     assert World.successors("A") == [("E", 1), ("Y", 2), ("B", 2)]
     assert World.successors("Ñ") == [("Z", 1), ("J", 1), ("I", 2)]
