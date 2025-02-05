@@ -17,7 +17,7 @@ def a_star_search(start_state, goal_state):
         if current_node.state == goal_state:
             return frontier, explored, reconstruct_path(current_node)
 
-        explored.add_node(current_node)
+        explored.add(current_node)
 
         for successor, cost in world.successors(current_node.state):
             g = current_node.g + cost
@@ -25,7 +25,7 @@ def a_star_search(start_state, goal_state):
             h = manhattan_distance(successor, goal_state)
             successor_node = Node(successor, parent=current_node, g=g, h=h)
 
-            if explored.contains_node(successor_node):
+            if explored.contains(successor_node):
                 continue
 
             if not frontier.contains(successor_node) or g < successor_node.g:
