@@ -1,6 +1,6 @@
-class Map:
-    def __init__(self):
-        self.map = [
+class World:
+
+    WORLD = [
             ["Y", "A", "B", "C", "D"],
             ["Z", "E", "F", "G", "H"],
             ["Ñ", "I", "-", "-", "L"],
@@ -8,45 +8,47 @@ class Map:
             ["AA", "Q", "-", "S", "-"],
             ["AB", "U", "V", "W", "X"],
         ]
-        self.rows = len(self.map)
-        self.cols = len(self.map[0])
-        self.v_cost = 1
-        self.h_cost = 2
+    V_COST = 1
+    H_COST = 2
+    ROWS = len(WORLD)
+    COLUMNS = len(WORLD[0])
 
-    def find_position(self, state):
-        for x in range(self.rows):
-            for y in range(self.cols):
-                if self.map[x][y] == state:
+    @classmethod
+    def find_position(cls, state):
+        for x in range(cls.ROWS):
+            for y in range(cls.COLUMNS):
+                if cls.WORLD[x][y] == state:
                     return x, y
         return None
 
-    def successors(self, state):
+    @classmethod
+    def successors(cls, state):
 
         if state == "-":
             return []
 
-        pos = self.find_position(state)
+        pos = cls.find_position(state)
         if not pos:
             return []
 
         x, y = pos
         successors = []
 
-        if x > 0 and self.map[x - 1][y] != "-":
+        if x > 0 and cls.WORLD[x - 1][y] != "-":
             successors.append(
-                (self.map[x - 1][y], self.v_cost)
+                (cls.WORLD[x - 1][y], cls.V_COST)
             )  # Move up cost 1
-        if x < self.rows - 1 and self.map[x + 1][y] != "-":
+        if x < cls.ROWS - 1 and cls.WORLD[x + 1][y] != "-":
             successors.append(
-                (self.map[x + 1][y], self.v_cost)
+                (cls.WORLD[x + 1][y], cls.V_COST)
             )  # Move down
-        if y > 0 and self.map[x][y - 1] != "-":
+        if y > 0 and cls.WORLD[x][y - 1] != "-":
             successors.append(
-                (self.map[x][y - 1], self.h_cost)
+                (cls.WORLD[x][y - 1], cls.H_COST)
             )  # Move left cost 2
-        if y < self.cols - 1 and self.map[x][y + 1] != "-":
+        if y < cls.COLUMNS - 1 and cls.WORLD[x][y + 1] != "-":
             successors.append(
-                (self.map[x][y + 1], self.h_cost)
+                (cls.WORLD[x][y + 1], cls.H_COST)
             )  # Move right
 
         return successors
