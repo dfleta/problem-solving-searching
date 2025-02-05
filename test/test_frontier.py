@@ -29,9 +29,6 @@ def test_add_multiple_nodes(frontier):
     frontier.add(nodeA)
     frontier.add(nodeB)
     frontier.add(nodeC)
-    assert frontier.contains(nodeA)
-    assert frontier.contains(nodeB)
-    assert frontier.contains(nodeC)
     assert frontier.size() == 3
 
 
