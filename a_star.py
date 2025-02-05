@@ -41,6 +41,7 @@ def heuristic(state, goal_state):
     # return abs(x1 - x2) + abs(y1 - y2)
     return abs(ord(state[0]) - ord(goal_state[0]))
 
+
 def manhattan_distance(state, goal_state):
     x1, y1 = World.find_position(state)
     x2, y2 = World.find_position(goal_state)
@@ -59,6 +60,6 @@ if __name__ == "__main__":
     START_STATE = "S"
     GOAL_STATE = "F"
     frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
-    print("Path found:", solution)
-    print("Explored:",  list(node for node in explored.get_elements()))
-    print("Frontier:",  list(frontier.get_elements()))
+    print("Path found:", " -> ".join(solution))
+    print("Explored:", list(node for node in explored.get_elements()))
+    print("Frontier:", list(frontier.get_elements()))
