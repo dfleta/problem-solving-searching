@@ -1,6 +1,6 @@
 # Algoritmos resolución de problemas mediante búsquedas.
 
-## Ejercicios módulo Modelos de Intelixencia Artificial.
+## Ejercicios módulo Modelos de Intelixencia Artificial
 
 ### Ejercicio 1
 
