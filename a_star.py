@@ -5,7 +5,12 @@ from src.reached import Reached
 
 
 def a_star_search(start_state, goal_state):
-    start_node = Node(start_state, g=0, h=manhattan_distance(start_state, goal_state))
+    start_node = Node(
+        start_state,
+        parent=None,
+        g=0,
+        h=manhattan_distance(start_state, goal_state),
+    )
     frontier = Frontier()
     frontier.add(start_node)
     reached = Reached()
@@ -28,7 +33,10 @@ def a_star_search(start_state, goal_state):
             if reached.contains(successor_node):
                 continue
 
-            if not frontier.contains(successor_node) or g < successor_node.g:
+            if (
+                not frontier.contains(successor_node)
+                # or current_node.g < successor_node.g
+            ):
                 frontier.add(successor_node)
 
     return None

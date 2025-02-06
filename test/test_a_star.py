@@ -1,5 +1,6 @@
 from a_star import manhattan_distance
 from a_star import solution
+from a_star import a_star_search
 from src.node import Node
 
 def test_manhattan_distance_same_position():
@@ -30,3 +31,15 @@ def test_solution_four_nodes():
     node_B = Node("B", parent=node_C)
     node_A = Node("A", parent=node_B)
     assert solution(node_A) == ["D", "C", "B", "A"]
+
+def test_a_star_searh_same_initial_goal_node():
+    START_STATE = "S"
+    GOAL_STATE = "S"
+    frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
+    assert solution == ["S"]
+
+def test_a_star_search():
+    START_STATE = "S"
+    GOAL_STATE = "F"
+    frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
+    assert solution == ["S", "O", "P", "L", "H", "G", "F"]
