@@ -5,7 +5,7 @@ from src.reached import Reached
 
 
 def a_star_search(start_state, goal_state):
-    start_node = Node(start_state, g=0, h=heuristic(start_state, goal_state))
+    start_node = Node(start_state, g=0, h=manhattan_distance(start_state, goal_state))
     frontier = Frontier()
     frontier.add(start_node)
     reached = Reached()
