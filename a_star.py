@@ -20,6 +20,7 @@ def a_star_search(start_state, goal_state):
         current_node = frontier.get_best_node()
 
         if current_node.state == goal_state:
+            reached.add(current_node)
             return frontier, reached, solution(current_node)
 
         reached.add(current_node)
@@ -38,6 +39,8 @@ def a_star_search(start_state, goal_state):
                 # or current_node.g < successor_node.g
             ):
                 frontier.add(successor_node)
+            else:
+                frontier.update(successor_node)
 
     return None
 
