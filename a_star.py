@@ -49,6 +49,8 @@ def manhattan_distance(state, goal_state):
 
 
 def solution(node):
+    # (lambda path: path[::-1])
+    # (list(iter(lambda: node and (node := node.parent) or None, None)))
     path = []
     while node:
         path.append(node.state)

@@ -1,4 +1,6 @@
 from a_star import manhattan_distance
+from a_star import solution
+from src.node import Node
 
 def test_manhattan_distance_same_position():
     assert manhattan_distance("A", "A") == 0
@@ -17,3 +19,14 @@ def test_manhattan_distance_obstacle_between_positions():
 
 def test_manhattan_distance_opposite_corners():
     assert manhattan_distance("Y", "X") == 9
+
+def test_solution_single_node():
+    node = Node("A")
+    assert solution(node) == ["A"]
+
+def test_solution_four_nodes():
+    node_D = Node("D")
+    node_C = Node("C", parent=node_D)
+    node_B = Node("B", parent=node_C)
+    node_A = Node("A", parent=node_B)
+    assert solution(node_A) == ["D", "C", "B", "A"]
