@@ -10,7 +10,7 @@ class Set:
         self.elements.discard(node)
 
     def contains(self, node):
-        return any(element == node for element in self.elements)
+        return node in self.get_elements()
 
     def is_empty(self):
         return self.size() == 0
@@ -20,3 +20,8 @@ class Set:
 
     def get_elements(self):
         return self.elements
+
+    def get_element(self, node):
+        return next(
+            filter(lambda element: element == node, self.get_elements())
+        )

@@ -9,7 +9,7 @@ class Node:
         self.f = g + h  # Valor de la función objetivo f
 
     def __lt__(self, other):
-        return self.f < other.f
+        return self.g < other.g
 
     def __eq__(self, other):
         return self.state == other.state
