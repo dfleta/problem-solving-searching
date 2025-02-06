@@ -1,6 +1,7 @@
 from src.collection import Set
 from src.node import Node
 
+
 class Reached(Set):
 
     def __init__(self):
