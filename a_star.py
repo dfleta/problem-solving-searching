@@ -95,8 +95,6 @@ if __name__ == "__main__":
     START_STATE = "Z"
     GOAL_STATE = "N"
     frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
-    print("Path found:", " -> ".join(solution))
-    print("Explored:", list(explored.get_elements()))
-    print("Frontier:", list(frontier.get_elements()))
+    print("\nPath found:", " -> ".join(solution))
 
     show_map(solution, explored, frontier, START_STATE, GOAL_STATE)
