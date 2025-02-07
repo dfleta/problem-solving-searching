@@ -46,4 +46,3 @@ class Frontier(Set):
                 element.g -= g_decrement
                 element.f = element.g + element.h
                 self.__update_g(g_decrement, element)
-    
