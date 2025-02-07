@@ -18,5 +18,3 @@ class Reached(Set):
     def get_nodes(self):
         return self.get_elements()
 
-    def __str__(self):
-        return str([element.state for element in self.get_elements()])

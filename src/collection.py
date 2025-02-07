@@ -25,3 +25,6 @@ class Set:
         return next(
             filter(lambda element: element == node, self.get_elements())
         )
+    
+    def __str__(self):
+        return str([element.state for element in self.get_elements()])
