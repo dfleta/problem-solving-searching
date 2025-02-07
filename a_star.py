@@ -68,6 +68,25 @@ def solution(node):
     return path[::-1]
 
 
+def show_map(solution, explored, start_state, goal_state):
+    for row in World.WORLD:
+        for state in row:
+            if state == start_state:
+                print(f"\033[1;31;40m{state}\033[0m", end=" ")
+            elif state == goal_state:
+                print(f"\033[1;33;40m{state}\033[0m", end=" ")
+            elif state in solution:
+                print(f"\033[1;32;40m{state}\033[0m", end=" ")
+            elif state in str(explored.get_elements()):
+                print(f"\033[1;34;40m{state}\033[0m", end=" ")
+            else:
+                print(state, end=" ")
+        print()
+    print(f"\nStart state: \033[1;31;40m{start_state}\033[0m")
+    print(f"Goal State: \033[1;33;40m{goal_state}\033[0m")
+    print(f"Solution: \033[1;32;40m{solution}\033[0m")
+    print(f"Explored: \033[1;34;40m{str(explored.get_elements())}\033[0m")
+
 if __name__ == "__main__":
     START_STATE = "Z"
     GOAL_STATE = "N"
@@ -75,3 +94,5 @@ if __name__ == "__main__":
     print("Path found:", " -> ".join(solution))
     print("Explored:", list(explored.get_elements()))
     print("Frontier:", list(frontier.get_elements()))
+
+    show_map(solution, explored, START_STATE, GOAL_STATE)
