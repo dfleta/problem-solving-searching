@@ -31,7 +31,8 @@ class Frontier(Set):
         old = self.get_node(node)
         if node < old:
             self.__update_frontier(old, node)
-            self.__update_g(old, node)
+            g_decrement = old.g - node.g
+            self.__update_g(g_decrement, node)
         else:
             pass
 
@@ -39,9 +40,10 @@ class Frontier(Set):
         self.remove(old)
         self.add(new)
 
-    def __update_g(self, old, new):
+    def __update_g(self, g_decrement, new):
         for element in self.get_elements():
             if element.parent and element.parent.state == new.state:
-                element.g -= old.g - new.g
+                element.g -= g_decrement
                 element.f = element.g + element.h
+                self.__update_g(g_decrement, element)
     

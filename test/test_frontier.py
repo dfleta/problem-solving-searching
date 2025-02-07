@@ -79,14 +79,24 @@ def test_update_node():
     frontier.add(node_C)
     node_E = Node(state="E", parent=node_C, g=4, h=2)
     node_F = Node(state="F", parent=node_C, g=5, h=1)
+    ## entrar en recursion
+    node_G = Node(state="G", parent=node_F, g=6, h=0)
+    node_H = Node(state="H", parent=node_G, g=7, h=0)
+    ## entrar en recursion
+    ## backtracking dependera del orden de salida
+    ## de los elementos del set() frontera
+    node_I = Node(state="I", parent=node_E, g=8, h=0)
     frontier.add(node_E)
     frontier.add(node_F)
+    frontier.add(node_G)
+    frontier.add(node_H)
+    frontier.add(node_I)
 
     # nodo presente en frontera con g mayor
     node_D = Node(state="C", parent=node_B, g=2, h=2)
     frontier.update(node_D)
     # __update_frontier
-    assert frontier.size() == 5
+    assert frontier.size() == 8
     assert frontier.contains(node_D)
     assert frontier.get_node(node_D).g == 2
     # __update_g h
@@ -96,9 +106,18 @@ def test_update_node():
     assert frontier.get_node(node_F).parent.state == "C"
     assert frontier.get_node(node_F).g == 4
     assert frontier.get_node(node_F).f == 5
+    # propagar g a sucesores
+    assert frontier.get_node(node_G).parent.state == "F"
+    assert frontier.get_node(node_G).g == 5
+    assert frontier.get_node(node_H).parent.state == "G"
+    assert frontier.get_node(node_H).g == 6
+    # backtracking propagando g a sucesores
+    # de /los nodo(s) con menor g
+    assert frontier.get_node(node_I).parent.state == "E"
+    assert frontier.get_node(node_I).g == 7
 
 
-def test_no_update_node(frontier):
+def test_no_update_node():
     frontier = Frontier()
     node_A = Node(state="A", parent=None, g=1, h=2)
     node_B = Node(state="B", parent=node_A, g=2, h=2)
@@ -112,4 +131,11 @@ def test_no_update_node(frontier):
     frontier.update(node)
     # __update_frontier
     assert frontier.size() == 3
-    assert frontier.get_node(node).h == 3
+    assert frontier.get_node(node).g == 3
+
+        # h menor, g igual
+    node = Node(state="B", parent=node_A, g=3, h=2)
+    frontier.update(node)
+    # __update_frontier
+    assert frontier.size() == 3
+    assert frontier.get_node(node).g == 2
