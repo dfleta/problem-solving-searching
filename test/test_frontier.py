@@ -8,13 +8,13 @@ from src.node import Node
 
 @pytest.fixture(name="frontier")
 def set_up_frontier():
-    nodeA = Node(state="A", parent=None, g=1, h=2)
-    nodeB = Node(state="B", parent="A", g=2, h=2)
-    nodeC = Node(state="C", parent="B", g=3, h=3)
+    node_A = Node(state="A", parent=None, g=1, h=2)
+    node_B = Node(state="B", parent=node_A, g=2, h=2)
+    node_C = Node(state="C", parent=node_B, g=3, h=3)
     frontier = Frontier()
-    frontier.add(nodeA)
-    frontier.add(nodeB)
-    frontier.add(nodeC)
+    frontier.add(node_A)
+    frontier.add(node_B)
+    frontier.add(node_C)
     assert frontier.size() == 3
     return frontier
 
@@ -47,7 +47,7 @@ def test_remove_invalid_node(frontier):
 
 
 def test_remove_nonexistent_node(frontier):
-    node = Node(state="D", parent="C", g=4, h=2)
+    node = Node(state="D", parent=None, g=4, h=2)
     frontier.remove(node)
     assert frontier.size() == 3
     assert not frontier.contains(node)
@@ -69,18 +69,47 @@ def test_get_node(frontier):
     assert frontier.get_node(node).state == "A"
 
 
-def test_update_node(frontier):
-    nodeE = Node(state="E", parent="C", g=4, h=2)
-    nodeF = Node(state="F", parent="C", g=5, h=1)
-    frontier.add(nodeE)
-    frontier.add(nodeF)
-    nodeD = Node(state="C", parent="B", g=2, h=2)
-    frontier.update(nodeD)
+def test_update_node():
+    frontier = Frontier()
+    node_A = Node(state="A", parent=None, g=1, h=2)
+    node_B = Node(state="B", parent=node_A, g=2, h=2)
+    node_C = Node(state="C", parent=node_B, g=3, h=3)
+    frontier.add(node_A)
+    frontier.add(node_B)
+    frontier.add(node_C)
+    node_E = Node(state="E", parent=node_C, g=4, h=2)
+    node_F = Node(state="F", parent=node_C, g=5, h=1)
+    frontier.add(node_E)
+    frontier.add(node_F)
+
+    # nodo presente en frontera con g mayor
+    node_D = Node(state="C", parent=node_B, g=2, h=2)
+    frontier.update(node_D)
     # __update_frontier
     assert frontier.size() == 5
-    assert frontier.contains(nodeD)
-    assert frontier.get_node(nodeD).g == 2
-    # __update_g
-    assert frontier.get_node(nodeE).parent == "C"
-    assert frontier.get_node(nodeE).g == 3
-    assert frontier.get_node(nodeF).g == 4
+    assert frontier.contains(node_D)
+    assert frontier.get_node(node_D).g == 2
+    # __update_g h
+    assert frontier.get_node(node_E).parent.state == "C"
+    assert frontier.get_node(node_E).g == 3
+    assert frontier.get_node(node_E).f == 5
+    assert frontier.get_node(node_F).parent.state == "C"
+    assert frontier.get_node(node_F).g == 4
+    assert frontier.get_node(node_F).f == 5
+
+
+def test_no_update_node(frontier):
+    frontier = Frontier()
+    node_A = Node(state="A", parent=None, g=1, h=2)
+    node_B = Node(state="B", parent=node_A, g=2, h=2)
+    node_C = Node(state="C", parent=node_B, g=3, h=3)
+    frontier.add(node_A)
+    frontier.add(node_B)
+    frontier.add(node_C)
+
+    # h menor, g igual
+    node = Node(state="C", parent=node_B, g=3, h=2)
+    frontier.update(node)
+    # __update_frontier
+    assert frontier.size() == 3
+    assert frontier.get_node(node).h == 3

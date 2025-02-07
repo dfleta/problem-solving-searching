@@ -34,8 +34,7 @@ def a_star_search(start_state, goal_state):
             if reached.contains(successor_node):
                 continue
 
-            if (
-                not frontier.contains(successor_node)
+            if (not frontier.contains(successor_node)
                 # or current_node.g < successor_node.g
             ):
                 frontier.add(successor_node)
@@ -70,9 +69,9 @@ def solution(node):
 
 
 if __name__ == "__main__":
-    START_STATE = "S"
-    GOAL_STATE = "F"
+    START_STATE = "Z"
+    GOAL_STATE = "N"
     frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
     print("Path found:", " -> ".join(solution))
-    print("Explored:", list(node for node in explored.get_elements()))
+    print("Explored:", list(explored.get_elements()))
     print("Frontier:", list(frontier.get_elements()))

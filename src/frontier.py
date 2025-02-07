@@ -32,6 +32,8 @@ class Frontier(Set):
         if node < old:
             self.__update_frontier(old, node)
             self.__update_g(old, node)
+        else:
+            pass
 
     def __update_frontier(self, old, new):
         self.remove(old)
@@ -39,8 +41,7 @@ class Frontier(Set):
 
     def __update_g(self, old, new):
         for element in self.get_elements():
-            if element.parent == old.state:
+            if element.parent and element.parent.state == new.state:
                 element.g -= old.g - new.g
-    # self.get_elements().map(lambda element: setattr(element, 'g', element.g - old.g + new.g) if element.parent == old.state else None)
-
+                element.f = element.g + element.h
     
