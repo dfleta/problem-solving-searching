@@ -2,6 +2,7 @@ from src.world import World
 from src.node import Node
 from src.frontier import Frontier
 from src.reached import Reached
+from src.cli_colors import Colors
 
 
 def a_star_search(start_state, goal_state):
@@ -34,7 +35,8 @@ def a_star_search(start_state, goal_state):
             if reached.contains(successor_node):
                 continue
 
-            if (not frontier.contains(successor_node)
+            if (
+                not frontier.contains(successor_node)
                 # or current_node.g < successor_node.g
             ):
                 frontier.add(successor_node)
@@ -68,33 +70,41 @@ def solution(node):
     return path[::-1]
 
 
-def show_map(solution, explored, frontier, start_state, goal_state):
+def problem_repr(solution, explored, frontier, start_state, goal_state):
+    print("\nPath found:", " -> ".join(solution))
     print()
     for row in World.WORLD:
         for state in row:
             if state == start_state:
-                print(f"\033[1;31;40m{state}\033[0m", end=" ")
+                _show_state_colored(state, Colors.RED)
             elif state == goal_state:
-                print(f"\033[1;33;40m{state}\033[0m", end=" ")
+                _show_state_colored(state, Colors.YELLOW)
             elif state in solution:
-                print(f"\033[1;32;40m{state}\033[0m", end=" ")
+                _show_state_colored(state, Colors.GREEN)
             elif state in str(explored.get_elements()):
-                print(f"\033[1;34;40m{state}\033[0m", end=" ")
+                _show_state_colored(state, Colors.BLUE)
             elif state in str(frontier.get_elements()):
-                print(f"\033[1;35;40m{state}\033[0m", end=" ")
+                _show_state_colored(state, Colors.PURPLE)
             else:
                 print(state, end=" ")
         print()
-    print(f"\nStart state: \033[1;31;40m{start_state}\033[0m")
-    print(f"Goal State: \033[1;33;40m{goal_state}\033[0m")
-    print(f"Solution: \033[1;32;40m{solution}\033[0m")
-    print(f"Explored: \033[1;34;40m{str(explored.get_elements())}\033[0m")
-    print(f"Frontier: \033[1;35;40m{str(frontier.get_elements())}\033[0m")
+    print("\nStart state:", end=" ")
+    _show_state_colored(start_state, Colors.RED)
+    print("\nGoal State:", end= " ")
+    _show_state_colored(state, Colors.YELLOW)
+    print("Solution: ")
+    _show_state_colored(state, Colors.GREEN)
+    print("Explored (state g): ")
+    _show_state_colored(state, Colors.BLUE)
+    print("Frontier: ")
+    _show_state_colored(state, Colors.PURPLE)
+
+def _show_state_colored(state, color):
+    print(f"{color}{state}{Colors.ENDC}", end=" ")
+
 
 if __name__ == "__main__":
     START_STATE = "Z"
     GOAL_STATE = "N"
     frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
-    print("\nPath found:", " -> ".join(solution))
-
-    show_map(solution, explored, frontier, START_STATE, GOAL_STATE)
+    problem_repr(solution, explored, frontier, START_STATE, GOAL_STATE)
