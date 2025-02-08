@@ -2,8 +2,7 @@ from src.world import World
 from src.node import Node
 from src.frontier import Frontier
 from src.reached import Reached
-from src.cli_colors import Colors
-
+from src.output import problem_repr
 
 def a_star_search(start_state, goal_state):
     start_node = Node(
@@ -68,39 +67,6 @@ def solution(node):
         path.append(node.state)
         node = node.parent
     return path[::-1]
-
-
-def problem_repr(solution, explored, frontier, start_state, goal_state):
-    print("\nPath found:", " -> ".join(solution))
-    print()
-    for row in World.WORLD:
-        for state in row:
-            if state == start_state:
-                _show_state_colored(state, Colors.RED)
-            elif state == goal_state:
-                _show_state_colored(state, Colors.YELLOW)
-            elif state in solution:
-                _show_state_colored(state, Colors.GREEN)
-            elif state in str(explored.get_elements()):
-                _show_state_colored(state, Colors.BLUE)
-            elif state in str(frontier.get_elements()):
-                _show_state_colored(state, Colors.PURPLE)
-            else:
-                print(state, end=" ")
-        print()
-    print("\nStart state:", end=" ")
-    _show_state_colored(start_state, Colors.RED)
-    print("\nGoal State:", end= " ")
-    _show_state_colored(state, Colors.YELLOW)
-    print("Solution: ")
-    _show_state_colored(state, Colors.GREEN)
-    print("Explored (state g): ")
-    _show_state_colored(state, Colors.BLUE)
-    print("Frontier: ")
-    _show_state_colored(state, Colors.PURPLE)
-
-def _show_state_colored(state, color):
-    print(f"{color}{state}{Colors.ENDC}", end=" ")
 
 
 if __name__ == "__main__":
