@@ -1,6 +1,7 @@
 ## PYLINT
 # Instala la extension para VSCOde even-better-toml
-# Genera el fichero .toml con el comando "pylint --generate-rcfile > pyproject.toml"
+# Genera el fichero .toml con el comando
+# pylint --generate-rcfile > pyproject.toml
 # https://pylint.readthedocs.io/en/v2.17.7/tutorial.html
 
 ## Black
