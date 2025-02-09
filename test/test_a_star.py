@@ -41,15 +41,15 @@ def test_solution_four_nodes():
 
 
 def test_a_star_searh_same_initial_goal_node():
-    _, _, path = a_star_search(start_state="S", goal_state="S")
+    _, _, path = a_star_search(initial_state="S", goal_state="S")
     assert path == ["S"]
 
 
 def test_a_star_search():
-    _, _, path = a_star_search(start_state="S", goal_state="F")
+    _, _, path = a_star_search(initial_state="S", goal_state="F")
     assert path == ["S", "O", "P", "L", "H", "G", "F"]
 
 
 def test_a_star_search_update_old_nodes():
-    _, _, path = a_star_search(start_state="Z", goal_state="N")
+    _, _, path = a_star_search(initial_state="Z", goal_state="N")
     assert path == ["Z", "E", "F", "G", "H", "L", "P", "O", "N"]
