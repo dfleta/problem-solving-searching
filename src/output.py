@@ -1,13 +1,13 @@
-
 from src.cli_colors import Colors
 from src.world import World
 
-def problem_repr(solution, explored, frontier, start_state, goal_state):
+
+def problem_repr(solution, explored, frontier, initial_state, goal_state):
     print("\nPath found:", " -> ".join(solution))
     print()
     for row in World.WORLD:
         for state in row:
-            if state == start_state:
+            if state == initial_state:
                 _show_state_colored(state, Colors.RED)
             elif state == goal_state:
                 _show_state_colored(state, Colors.YELLOW)
@@ -21,8 +21,8 @@ def problem_repr(solution, explored, frontier, start_state, goal_state):
                 print(state, end=" ")
         print()
     print("\nStart state:", end=" ")
-    _show_state_colored(start_state, Colors.RED)
-    print("\nGoal State:", end= " ")
+    _show_state_colored(initial_state, Colors.RED)
+    print("\nGoal State:", end=" ")
     _show_state_colored(solution, Colors.YELLOW)
     print("\nSolution: ")
     _show_state_colored(state, Colors.GREEN)

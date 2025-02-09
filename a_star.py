@@ -1,15 +1,17 @@
+import argparse
 from src.world import World
 from src.node import Node
 from src.frontier import Frontier
 from src.reached import Reached
 from src.output import problem_repr
 
-def a_star_search(start_state, goal_state):
+
+def a_star_search(initial_state, goal_state):
     start_node = Node(
-        start_state,
+        initial_state,
         parent=None,
         g=0,
-        h=manhattan_distance(start_state, goal_state),
+        h=manhattan_distance(initial_state, goal_state),
     )
     frontier = Frontier()
     frontier.add(start_node)
@@ -69,8 +71,36 @@ def solution(node):
     return path[::-1]
 
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="A* Search Algorithm")
+    parser.add_argument("start_state", help="Initial state", default="Z")
+    parser.add_argument("goal_state", help="Goal state", default="N")
+    parser.add_argument(
+        "-v_c",
+        type=int,
+        default=1,
+        help="Cost for vertical movements",
+        required=False,
+    )
+    parser.add_argument(
+        "-h_c",
+        type=int,
+        default=2,
+        help="Cost for horizontal movements",
+        required=False,
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    START_STATE = "Z"
-    GOAL_STATE = "N"
-    frontier, explored, solution = a_star_search(START_STATE, GOAL_STATE)
-    problem_repr(solution, explored, frontier, START_STATE, GOAL_STATE)
+
+    args = parse_arguments()
+    initial_state = args.start_state
+    goal_state = args.goal_state
+    World.V_COST = args.v_c
+    World.V_COST = args.h_c
+
+    # START_STATE = "Z"
+    # GOAL_STATE = "N"
+    frontier, explored, solution = a_star_search(initial_state, goal_state)
+    problem_repr(solution, explored, frontier, initial_state, goal_state)

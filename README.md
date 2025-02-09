@@ -2,11 +2,41 @@
 
 ## Ejercicios módulo Modelos de Intelixencia Artificial
 
-### uso
+### Uso
 
 `git clone https://github.com/dfleta/AI_101.git`
 
-`python3 a_star`
+`python3 a_star -h`
+
+```zsh
+usage: a_star.py [-h] [-v_c V_C] [-h_c H_C] start_state goal_state
+
+A* Search Algorithm
+
+positional arguments:
+  start_state  Initial state
+  goal_state   Goal state
+
+options:
+  -h, --help   show this help message and exit
+  -v_c V_C     Cost for vertical movements
+  -h_c H_C     Cost for horizontal movements
+```
+
+#### Ejemplos
+
+`python3 a_star.py -v_c 1 -h_c 2 Z N`
+
+o 
+
+`python3 a_star.py Z N`
+
+!["CLI output Z N"](./doc/CLI.png)
+
+`python3 a_star.py -v_c 1 -h_c 2 S F`
+
+!["outpu CLI S F"](./doc/CLI_2.png)
+
 
 ### Ejercicio 1
 
