@@ -37,6 +37,12 @@ o
 
 !["outpu CLI S F"](./doc/CLI_2.png)
 
+### Algoritmo
+
+!["Pseudocódigo A star I"](./doc/pseudocodigo_A_star_I.png)
+
+!["Pseudocódigo A star II"](./doc/pseudocodigo_A_star_II.png)
+
 
 ### Ejercicio 1
 
