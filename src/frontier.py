@@ -3,7 +3,6 @@ from src.node import Node
 
 
 class Frontier(Set):
-
     def __init__(self):
         super().__init__()
 

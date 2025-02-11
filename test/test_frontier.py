@@ -133,7 +133,7 @@ def test_no_update_node():
     assert frontier.size() == 3
     assert frontier.get_node(node).g == 3
 
-        # h menor, g igual
+    # h menor, g igual
     node = Node(state="B", parent=node_A, g=3, h=2)
     frontier.update(node)
     # __update_frontier

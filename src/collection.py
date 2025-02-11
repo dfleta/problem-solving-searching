@@ -1,5 +1,4 @@
 class Set:
-
     def __init__(self):
         self.elements = set()
 
@@ -22,9 +21,7 @@ class Set:
         return self.elements
 
     def get_element(self, node):
-        return next(
-            filter(lambda element: element == node, self.get_elements())
-        )
+        return next(filter(lambda element: element == node, self.get_elements()))
 
     def __str__(self):
         return str([element.state for element in self.get_elements()])

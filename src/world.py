@@ -1,5 +1,4 @@
 class World:
-
     WORLD = [
         ["Y", "A", "B", "C", "D"],
         ["Z", "E", "F", "G", "H"],
@@ -23,7 +22,6 @@ class World:
 
     @classmethod
     def successors(cls, state):
-
         if state == "-":
             return []
 
@@ -34,9 +32,7 @@ class World:
     @classmethod
     def successor_function(cls, row, col):
         operators = [cls.up, cls.down, cls.left, cls.right]
-        return list(
-            filter(None, map(lambda operator: operator(row, col), operators))
-        )
+        return list(filter(None, map(lambda operator: operator(row, col), operators)))
 
     @classmethod
     def up(cls, row, col):

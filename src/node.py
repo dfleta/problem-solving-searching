@@ -3,9 +3,7 @@ class Node:
         self.state = state
         self.parent = parent
         self.g = g  # Coste desde el nodo inicial hasta este nodo
-        self.h = (
-            h  # Estimación del coste desde este nodo hasta el nodo objetivo
-        )
+        self.h = h  # Estimación del coste desde este nodo hasta el nodo objetivo
         self.f = g + h  # Valor de la función objetivo f
 
     def __lt__(self, other):
