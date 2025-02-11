@@ -44,6 +44,66 @@ o
 !["Pseudocódigo A star II"](./doc/pseudocodigo_A_star_II.png)
 
 
+El método `__update_g()` actualiza de manera recursiva todos los nodos de la frontera que son descendientes del nodo que se está actualizando. Veamos cómo funciona:
+
+1. El método recibe dos parámetros:
+
+   - `g_decrement`: la diferencia entre el valor g antiguo y el nuevo
+   - `new`: el nodo que se acaba de actualizar
+
+2. El proceso recursivo funciona así:
+
+```py
+   def __update_g(self, g_decrement, new):
+       # Itera sobre todos los elementos en la frontera
+       for element in self.get_elements():
+           # Verifica si el elemento tiene un padre y si ese padre es el nodo que acabamos de actualizar
+           if element.parent and element.parent.state == new.state:
+               # Actualiza el valor g del elemento
+               element.g -= g_decrement
+               # Recalcula el valor f (f = g + h)
+               element.f = element.g + element.h
+               # Llamada recursiva para actualizar los hijos de este elemento
+               self.__update_g(g_decrement, element)
+```
+
+
+La recursión ocurre porque:
+
+1. Primero actualiza los hijos directos del nodo modificado
+
+2. Para cada hijo actualizado, llama recursivamente a `__update_g()` para actualizar sus propios hijos
+
+3. Este proceso continúa hasta que se hayan actualizado todos los descendientes en la frontera
+Sí, el método `__update_g()` actualiza de manera recursiva todos los nodos de la frontera que son descendientes del nodo que se está actualizando. Veamos cómo funciona:
+
+1. El método recibe dos parámetros:
+   - `g_decrement`: la diferencia entre el valor g antiguo y el nuevo
+   - `new`: el nodo que se acaba de actualizar
+
+2. El proceso recursivo funciona así:
+   ```py
+   def __update_g(self, g_decrement, new):
+       # Itera sobre todos los elementos en la frontera
+       for element in self.get_elements():
+           # Verifica si el elemento tiene un padre y si ese padre es el nodo que acabamos de actualizar
+           if element.parent and element.parent.state == new.state:
+               # Actualiza el valor g del elemento
+               element.g -= g_decrement
+               # Recalcula el valor f (f = g + h)
+               element.f = element.g + element.h
+               # Llamada recursiva para actualizar los hijos de este elemento
+               self.__update_g(g_decrement, element)
+   ```
+
+La recursión ocurre porque:
+1. Primero actualiza los hijos directos del nodo modificado
+2. Para cada hijo actualizado, llama recursivamente a `__update_g()` para actualizar sus propios hijos
+3. Este proceso continúa hasta que se hayan actualizado todos los descendientes en la frontera
+
+Este proceso es necesario porque cuando se encuentra un camino más corto a un nodo, todos sus descendientes en el árbol de búsqueda también deben actualizarse para reflejar el nuevo costo del camino.
+
+
 ### Ejercicio 1
 
 Considérese el problema de encontrar un camino, en la situación representada en la figura, desde la posición $i$ hasta la posición $e$. El NPC (*non-player character*) puede moverse de forma horizontal y vertical, un solo cuadrado en cada movimiento (cada movimiento tiene coste uno). Las zonas sombreadas impiden el paso del NPC a través de ellas.
