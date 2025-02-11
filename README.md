@@ -31,7 +31,7 @@ o
 
 `python3 a_star.py Z N`
 
-!["CLI output Z N"](./doc/CLI.png)
+!["CLI output Z N"](./doc/CLI_1.png)
 
 `python3 a_star.py -v_c 1 -h_c 2 S F`
 
