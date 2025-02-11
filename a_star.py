@@ -1,9 +1,10 @@
 import argparse
-from src.world import World
-from src.node import Node
+
 from src.frontier import Frontier
-from src.reached import Reached
+from src.node import Node
 from src.output import problem_repr
+from src.reached import Reached
+from src.world import World
 
 
 def a_star_search(initial_state, goal_state):
@@ -18,7 +19,6 @@ def a_star_search(initial_state, goal_state):
     reached = Reached()
 
     while not frontier.is_empty():
-
         current_node = frontier.get_best_node()
 
         if current_node.state == goal_state:
@@ -92,8 +92,7 @@ def parse_arguments():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
-
+def main():
     args = parse_arguments()
     initial_state = args.start_state
     goal_state = args.goal_state
@@ -104,3 +103,7 @@ if __name__ == "__main__":
     # GOAL_STATE = "N"
     frontier, explored, solution = a_star_search(initial_state, goal_state)
     problem_repr(solution, explored, frontier, initial_state, goal_state)
+
+
+if __name__ == "__main__":
+    main()
