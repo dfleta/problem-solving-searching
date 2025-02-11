@@ -98,7 +98,7 @@ if __name__ == "__main__":
     initial_state = args.start_state
     goal_state = args.goal_state
     World.V_COST = args.v_c
-    World.V_COST = args.h_c
+    World.H_COST = args.h_c
 
     # START_STATE = "Z"
     # GOAL_STATE = "N"
