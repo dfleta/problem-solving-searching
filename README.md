@@ -4,7 +4,7 @@
 
 ### Uso
 
-`git clone https://github.com/dfleta/AI_101.git`
+`https://github.com/dfleta/problem-solving-searching.git`
 
 `python3 a_star -h`
 
