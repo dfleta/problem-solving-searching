@@ -2,9 +2,71 @@
 
 ## Ejercicios módulo Modelos de Intelixencia Artificial
 
-### Uso
 
-`https://github.com/dfleta/problem-solving-searching.git`
+### Instalación y Ejecución con uv
+
+#### Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/dfleta/problem-solving-searching.git
+cd problem-solving-searching
+```
+
+Si quieres instalar las dependencias de desarrollo del proyecto, utiliza `uv`, sinom salta al epígrafe "ejecución".
+
+2. Instala `uv`:
+```bash
+python -m pip install uv
+```
+
+3. Crea y activa un entorno virtual con `uv`:
+```bash
+uv venv
+source .venv/bin/activate  # En Linux/MacOS
+# O en Windows:
+# .venv\Scripts\activate
+```
+
+4. Instala las dependencias del proyecto declaradas en `pyproject.toml`
+```bash
+uv sync
+```
+Recueda que puedes emplear la interfaz de `pip`:
+```bash
+pip install -r requirements.txt
+```
+
+5. Instala el linter `ruff`:
+```bash
+uv sync --group lint
+```
+
+#### Ejecución
+
+El programa implementa el algoritmo A* y puede ejecutarse desde la línea de comandos con diferentes parámetros:
+
+```bash
+python a_star.py <estado_inicial> <estado_objetivo> [-v_c COSTO_VERTICAL] [-h_c COSTO_HORIZONTAL]
+```
+
+##### Parámetros:
+- `estado_inicial`: Estado desde donde comenzar la búsqueda
+- `estado_objetivo`: Estado que se desea alcanzar
+- `-v_c`: Costo para movimientos verticales (opcional, valor predeterminado: 1)
+- `-h_c`: Costo para movimientos horizontales (opcional, valor predeterminado: 2)
+
+##### Ejemplos de uso:
+
+1. Búsqueda básica de Z a N:
+```bash
+python a_star.py Z N
+```
+
+2. Búsqueda con costos personalizados:
+```bash
+python a_star.py -v_c 2 -h_c 3 Z N
+```
 
 `python3 a_star -h`
 

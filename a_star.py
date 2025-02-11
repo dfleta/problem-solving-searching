@@ -99,8 +99,7 @@ def main():
     World.V_COST = args.v_c
     World.H_COST = args.h_c
 
-    # START_STATE = "Z"
-    # GOAL_STATE = "N"
+
     frontier, explored, solution = a_star_search(initial_state, goal_state)
     problem_repr(solution, explored, frontier, initial_state, goal_state)
 
