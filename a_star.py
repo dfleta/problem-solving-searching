@@ -29,17 +29,13 @@ def a_star_search(initial_state, goal_state):
 
         for successor, cost in World.successors(current_node.state):
             g = current_node.g + cost
-            # h = heuristic(successor, goal_state)
             h = manhattan_distance(successor, goal_state)
             successor_node = Node(successor, parent=current_node, g=g, h=h)
 
             if reached.contains(successor_node):
                 continue
 
-            if (
-                not frontier.contains(successor_node)
-                # or current_node.g < successor_node.g
-            ):
+            if not frontier.contains(successor_node):
                 frontier.add(successor_node)
             else:
                 frontier.update(successor_node)
@@ -98,7 +94,6 @@ def main():
     goal_state = args.goal_state
     World.V_COST = args.v_c
     World.H_COST = args.h_c
-
 
     frontier, explored, solution = a_star_search(initial_state, goal_state)
     problem_repr(solution, explored, frontier, initial_state, goal_state)
