@@ -1,10 +1,12 @@
 from src.cli_colors import Colors
 from src.world import World
+from src.matrix_plotter import MatrixPlotter
 
 
 def problem_repr(solution, explored, frontier, initial_state, goal_state):
     print("\nPath found:", " -> ".join(solution))
     print()
+
     for row in World.WORLD:
         for state in row:
             if state == initial_state:
@@ -20,6 +22,7 @@ def problem_repr(solution, explored, frontier, initial_state, goal_state):
             else:
                 print(state, end=" ")
         print()
+
     print("\nStart state:", end=" ")
     _show_state_colored(initial_state, Colors.RED)
     print("\nGoal State:", end=" ")
@@ -31,6 +34,17 @@ def problem_repr(solution, explored, frontier, initial_state, goal_state):
     print("\nFrontier: ")
     _show_state_colored(frontier.get_elements(), Colors.PURPLE)
     print()
+
+    # Create a MatrixPlotter instance
+    plotter = MatrixPlotter(
+        World.WORLD,
+        solution,
+        explored.get_elements(),
+        frontier.get_elements(),
+        initial_state,
+        goal_state,
+    )
+    plotter.plot()
 
 
 def _show_state_colored(state, color):
