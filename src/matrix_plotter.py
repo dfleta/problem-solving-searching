@@ -30,7 +30,7 @@ class MatrixPlotter:
                 if self.world[row][col] != "-":
                     matrix[row][col] = 1
 
-        fig, ax = plt.subplots(figsize=(10, 8))
+        fig, ax = plt.subplots(figsize=(8, 6))
 
         # Display the world map
         ax.imshow(matrix, cmap="Greys", interpolation="nearest", alpha=0.3)
