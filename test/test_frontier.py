@@ -16,6 +16,8 @@ def set_up_frontier():
     frontier.add(node_B)
     frontier.add(node_C)
     assert frontier.size() == 3
+    # orderedict devuelve los nodos según el orden de inserción
+    assert frontier.get_elements() == [node_A, node_B, node_C]
     return frontier
 
 
@@ -60,7 +62,7 @@ def test_get_best_node(frontier):
 
 
 def test_get_best_node_empty(frontier):
-    frontier.get_elements().clear()
+    frontier.clear()
     assert frontier.get_best_node() is None
 
 
@@ -92,11 +94,22 @@ def test_update_node():
     frontier.add(node_H)
     frontier.add(node_I)
 
+    assert frontier.get_elements() == [
+        node_A,
+        node_B,
+        node_C,
+        node_E,
+        node_F,
+        node_G,
+        node_H,
+        node_I,
+    ]
+
     # nodo presente en frontera con g mayor
     node_D = Node(state="C", parent=node_B, g=2, h=2)
     frontier.update(node_D)
     # __update_frontier
-    assert frontier.size() == 8
+    assert frontier.size() == 8  # no añade el nodo_D porque reemplaza al nodo_C
     assert frontier.contains(node_D)
     assert frontier.get_node(node_D).g == 2
     # __update_g h
