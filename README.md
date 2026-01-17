@@ -121,6 +121,8 @@ o
 
 !["Pathfindig visualization"](./doc/pathfinding_a_star_visualization.png)
 
+!["Pathfindig visualization"](./doc/video_a_star.mp4)
+
 ### Algoritmo
 
 !["Pseudocódigo A star I"](./doc/pseudocodigo_A_star_I.png)
