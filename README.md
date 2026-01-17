@@ -55,6 +55,10 @@ El programa implementa el algoritmo A* y puede ejecutarse desde la línea de com
 python a_star.py <estado_inicial> <estado_objetivo> [-v_c COSTO_VERTICAL] [-h_c COSTO_HORIZONTAL]
 ```
 
+```bash
+uv run a_star.py <estado_inicial> <estado_objetivo> [-v_c COSTO_VERTICAL] [-h_c COSTO_HORIZONTAL]
+```
+
 ##### Parámetros
 
 - `estado_inicial`: Estado desde donde comenzar la búsqueda
@@ -70,10 +74,18 @@ python a_star.py <estado_inicial> <estado_objetivo> [-v_c COSTO_VERTICAL] [-h_c 
 python a_star.py Z N
 ```
 
+```bash
+uv run a_star.py Z N
+```
+
 2. Búsqueda con costos personalizados
 
 ```bash
 python a_star.py -v_c 2 -h_c 3 Z N
+```
+
+```bash
+uv run a_star.py -v_c 2 -h_c 3 Z N
 ```
 
 `python3 a_star -h`
@@ -95,17 +107,17 @@ options:
 
 #### Ejemplos
 
-`python3 a_star.py -v_c 1 -h_c 2 Z N`
+`python3 a_star.py -v_c 1 -h_c 2 N J`
 
 o
 
-`python3 a_star.py Z N`
+`python3 a_star.py N J`
 
-!["CLI output Z N"](./doc/CLI_1.png)
+o
 
-`python3 a_star.py -v_c 1 -h_c 2 S F`
+`uv run a_star.py N J`
 
-!["outpu CLI S F"](./doc/CLI_2.png)
+!["CLI output N J"](./doc/CLI_N_J.png)
 
 !["Pathfindig visualization"](./doc/pathfinding_a_star_visualization.png)
 
